@@ -3,16 +3,32 @@ import React from "react";
 class MyComponents extends React.Component {
 
     state = {
-        name: 'Nguyen Minh Tuong',
-        age: 22,
-        address: 'Can Tho'
+        name: '',
+        age: 0,
+        address: 'Can Tho',
+        arr: ['a', 'b', 'c']
+    }
+
+    handelClick = (e) => {
+        this.setState({
+            age: Math.floor(Math.random() * 100 + 1)
+        })
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            name: e.target.value
+        })
     }
 
     render() {
-
         return (
             <div>
-                {this.state.name} {this.state.age}
+                <input value={this.state.name} onChange={(e) => this.handleChange(e)} />
+                <button onClick={this.handelClick}>Click</button>
+                My name is : {this.state.name}
+
+                Age : {this.state.age}
             </div>
         )
     }
