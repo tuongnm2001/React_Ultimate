@@ -4,15 +4,8 @@ class MyComponents extends React.Component {
 
     state = {
         name: '',
-        age: 0,
+        age: 22,
         address: 'Can Tho',
-        arr: ['a', 'b', 'c']
-    }
-
-    handelClick = (e) => {
-        this.setState({
-            age: Math.floor(Math.random() * 100 + 1)
-        })
     }
 
     handleChange = (e) => {
@@ -21,14 +14,21 @@ class MyComponents extends React.Component {
         })
     }
 
+    handleOnSubmit = (event) => {
+        event.preventDefault();
+        console.log(this.state);
+    }
+
     render() {
         return (
             <div>
-                <input value={this.state.name} onChange={(e) => this.handleChange(e)} />
-                <button onClick={this.handelClick}>Click</button>
-                My name is : {this.state.name}
+                <form onSubmit={(event) => { this.handleOnSubmit(event) }}>
+                    <input onChange={(e) => this.handleChange(e)} />
+                    <button>Click</button>
+                    My name is : {this.state.name}
 
-                Age : {this.state.age}
+                    Age : {this.state.age}
+                </form>
             </div>
         )
     }
