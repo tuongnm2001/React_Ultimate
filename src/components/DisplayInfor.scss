@@ -1,7 +1,15 @@
-.red {
-    color  : red;
-}
+.display-infor-container {
+    .red {
+        color  : red;
+    }
 
-.green {
-    color  : green;
+    .green {
+        color  : green;
+    }
+
+    .logo {
+        height   : 150px;
+        width    : 150px;
+        display  : flex;
+    }
 }
