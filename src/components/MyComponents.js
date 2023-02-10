@@ -10,6 +10,7 @@ class MyComponents extends React.Component {
             { id: 2, name: 'Nguyen Van B ', age: 29, address: 'TP Ho Chi Minh' },
             { id: 3, name: 'Nguyen Van C ', age: 30, address: 'Can Tho' },
         ]
+
     }
 
     render() {
