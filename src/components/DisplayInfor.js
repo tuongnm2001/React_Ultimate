@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './DisplayInfor.scss'
 
 class DisplayInfor extends Component {
 
