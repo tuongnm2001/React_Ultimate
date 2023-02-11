@@ -4,8 +4,28 @@ import logo from './../logo.svg'
 
 class DisplayInfor extends Component {
 
-    state = {
-        isShowHide: true
+    constructor(props) {
+        console.log('>> call me constructor');
+        super(props)
+        this.state = {
+            isShowHide: true
+        }
+    }
+
+    componentDidMount() {
+        console.log('>> call me component didmount');
+        setTimeout(() => {
+            document.title = 'Balotelli'
+        }, 3000)
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log('>> call me component didUpdate', this.props, 'prevProps', prevProps);
+        if (this.props.listUsers !== prevProps.listUsers) {
+            if (this.props.listUsers.length === 5) {
+                alert('you got 5 user')
+            }
+        }
     }
 
     handleShowHide = () => {
@@ -15,6 +35,7 @@ class DisplayInfor extends Component {
     }
 
     render() {
+        console.log('>> call me render');
 
         let { listUsers } = this.props
         let { isShowHide } = this.state
