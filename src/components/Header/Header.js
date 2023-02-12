@@ -8,7 +8,8 @@ const BasicExample = () => {
     return (
         <Navbar bg="light" expand="lg">
             <Container>
-                <Navbar.Brand href="#home">Tuong NM</Navbar.Brand>
+                <NavLink to="/" className='navbar-brand'>Tuong NM</NavLink>
+
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -19,11 +20,9 @@ const BasicExample = () => {
 
                     <Nav>
                         <NavDropdown title="Setting" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Log in</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Log out
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
+                            <NavDropdown.Item>Log out</NavDropdown.Item>
+                            <NavDropdown.Item>Log in</NavDropdown.Item>
+                            <NavDropdown.Item>Profile</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
