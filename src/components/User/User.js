@@ -2,7 +2,7 @@
 
 const User = (props) => {
     return (
-        <div>This is User</div>
+        <div>This is User NMT</div>
     )
 }
 
