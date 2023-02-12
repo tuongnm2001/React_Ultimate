@@ -19,11 +19,13 @@ const BasicExample = () => {
                     </Nav>
 
                     <Nav>
-                        <NavDropdown title="Setting" id="basic-nav-dropdown">
-                            <NavDropdown.Item>Log out</NavDropdown.Item>
+                        <button className='btn-login'>Login</button>
+                        <button className='btn-signup'>Sign up</button>
+                        {/* <NavDropdown title="Setting" id="basic-nav-dropdown"> */}
+                        {/* <NavDropdown.Item>Log out</NavDropdown.Item>
                             <NavDropdown.Item>Log in</NavDropdown.Item>
-                            <NavDropdown.Item>Profile</NavDropdown.Item>
-                        </NavDropdown>
+                            <NavDropdown.Item>Profile</NavDropdown.Item> */}
+                        {/* </NavDropdown> */}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
