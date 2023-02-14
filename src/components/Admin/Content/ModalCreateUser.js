@@ -2,11 +2,19 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from 'react-icons/fc';
-import axios from 'axios';
+import { toast } from 'react-toastify';
+import { postCreatNewUser } from '../../../service/apiService';
 
 const ModalCreateUser = (props) => {
 
     const { show, setShow } = props;
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('')
+    const [role, setRole] = useState('USER')
+    const [image, setImage] = useState('')
+    const [previewImage, setPreviewImage] = useState('')
 
     const handleClose = () => {
         setShow(false)
@@ -19,13 +27,6 @@ const ModalCreateUser = (props) => {
 
     };
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [username, setUsername] = useState('')
-    const [role, setRole] = useState('USER')
-    const [image, setImage] = useState('')
-    const [previewImage, setPreviewImage] = useState('')
-
     const handleUploadImage = (event) => {
         if (event.target && event.target.files && event.target.files[0]) {
             setPreviewImage(URL.createObjectURL(event.target.files[0]))
@@ -35,26 +36,38 @@ const ModalCreateUser = (props) => {
         }
     }
 
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
+
     const handleSubmitCreateUser = async () => {
-        //call api
-        // let data = {
-        //     email: email,
-        //     password: password,
-        //     username: username,
-        //     role: role,
-        //     userImage: image
-        // }
 
-        let data = new FormData();
-        data.append('email', email);
-        data.append('password', password);
-        data.append('username', username);
-        data.append('role', role);
-        data.append('userImage', image);
+        const isValidEmail = validateEmail(email)
+        if (!isValidEmail) {
+            toast.error('Email không hợp lệ.')
+            return;
+        }
 
-        let res = await axios.post('http://localhost:8081/api/v1/participant', data)
+        if (!password) {
+            toast.error('Bạn chưa nhập mật khẩu')
+            return;
+        }
 
-        console.log('>> check res : ', res);
+        //call api from service
+        let data = await postCreatNewUser(email, password, username, role, image)
+        console.log('check data 13 : ', data);
+        if (data && data.EC === 0) {
+            toast.success('Tạo người dùng thành công.')
+            handleClose()
+        }
+
+        if (data && data.EC !== 0) {
+            toast.error('Tạo người dùng thất bại.')
+        }
     }
 
     return (
