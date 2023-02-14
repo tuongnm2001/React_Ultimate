@@ -1,5 +1,16 @@
 .manage-user-container {
-    .users-content {}
+    .users-content {
+        .btn-add-new {
+            margin  : 15px 0;
+        }
+
+        .table-users-container {}
+    }
+
+    .title {
+        font-weight  : 600;
+        font-size    : 20px;
+    }
 }
 
 .modal-add-user {
@@ -26,7 +37,8 @@
         width          : fit-content;
         padding        : 3px 10px;
         border-radius  : 5px;
-        background     : #2bd38ae5;
+        background     : #198754;
+        color          : #fff;
         border         : none;
         cursor         : pointer;
 
