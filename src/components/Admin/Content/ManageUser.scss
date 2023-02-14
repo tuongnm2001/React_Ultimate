@@ -1,7 +1,9 @@
 .manage-user-container {
+    padding  : 10px;
+
     .users-content {
-        .btn-add-new {
-            margin  : 15px 0;
+        button {
+            margin  : 10px 0;
         }
 
         .table-users-container {}
@@ -16,10 +18,6 @@
 .modal-add-user {
 
     input:invalid {
-        border  : 1px solid red;
-    }
-
-    input[type=password]:invalid {
         border  : 1px solid red;
     }
 
