@@ -73,7 +73,9 @@ const ModalUpdateUser = (props) => {
         if (data && data.EC === 0) {
             toast.success('Cập nhật người dùng thành công.')
             handleClose()
-            await props.fetchListUser();
+            // await props.fetchListUser();
+            // props.setCurrentPage(1);
+            await props.fetchListUserWithPaginate(props.currentPage);
         }
 
         if (data && data.EC !== 0) {

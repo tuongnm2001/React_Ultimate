@@ -13,10 +13,17 @@ import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } fro
 import sidebarBg from '../../assets/bg2.jpg';
 import './SideBar.scss'
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SideBar = (props) => {
 
     const { image, collapsed, toggled, handleToggleSidebar } = props;
+
+    const navigate = useNavigate()
+
+    const handleGoBackHome = () => {
+        navigate('/')
+    }
 
     return (
         <>
@@ -28,7 +35,7 @@ const SideBar = (props) => {
                 onToggle={handleToggleSidebar}
             >
                 <SidebarHeader>
-                    <div
+                    <div onClick={() => handleGoBackHome()}
                         style={{
                             padding: '24px',
                             textTransform: 'uppercase',
@@ -38,6 +45,7 @@ const SideBar = (props) => {
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
                             whiteSpace: 'nowrap',
+                            cursor: 'pointer'
                         }}
                     >
                         <DiReact size={'3em'} color={'00bfff'} /> &ensp;

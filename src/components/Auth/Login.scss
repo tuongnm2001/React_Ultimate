@@ -1,0 +1,106 @@
+.login-container {
+
+    .header {
+        height          : 45px;
+        float           : right;
+        align-items     : center;
+        padding         : 8px 24px;
+        flex-direction  : row;
+        gap             : 3px;
+        margin-bottom   : 30px;
+
+        .back-home {
+            float         : left;
+            margin-right  : 950px;
+            cursor        : pointer;
+            color         : #262627;
+
+            &:hover {
+                color  : #777;
+            }
+        }
+
+        .title-header {
+            font-size      : 14px;
+            padding-right  : 5px;
+        }
+
+        .btn-sign-up {
+            display           : inline-block;
+            width             : auto;
+            font-size         : 12px;
+            line-height       : 14px;
+            height            : 28px;
+            padding           : 8px 12px 6px;
+            color             : rgb(38, 38, 39);
+            background-color  : rgb(255, 255, 255);
+            font-family       : inherit;
+            text-decoration   : none;
+            border-radius     : 2px;
+            vertical-align    : middle;
+            appearance        : none;
+            cursor            : pointer;
+            transition        : background-color 0.2s ease 0s;
+            border            : 1px solid currentcolor;
+        }
+
+        .need-help {
+            font-size        : 16px;
+            line-height      : 20px;
+            text-decoration  : underline;
+            color            : rgb(38, 38, 39);
+            padding-left     : 8px;
+            white-space      : nowrap;
+            cursor           : pointer;
+            font-weight      : 600;
+        }
+    }
+
+    .title {
+        font-size      : 30px;
+        padding        : 60px 0;
+        text-align     : center;
+        margin-bottom  : -10px;
+        font-weight    : 600;
+    }
+
+    .welcome {
+        font-size   : 20px;
+        padding     : 10px 0;
+        text-align  : center;
+        margin-top  : -40px;
+    }
+
+    .content-form {
+        display          : flex;
+        justify-content  : center;
+
+        .form-group {
+            margin-right  : 70px;
+        }
+
+        input {
+            margin-bottom  : 15px;
+            margin-top     : 3px;
+            width          : 130%;
+        }
+
+        button {
+            width          : 130%;
+            height         : 40px;
+            border         : none;
+            border-radius  : 5px;
+            margin         : 20px 0;
+            color          : white;
+            background     : #262627;
+        }
+
+        .forgot-password {
+            color            : #777;
+            font-size        : 16px;
+            margin-bottom    : 20px;
+            text-decoration  : underline;
+        }
+
+    }
+}
