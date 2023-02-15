@@ -14,6 +14,11 @@
             height  : 40px;
         }
 
-        .admin-main {}
+        .admin-main {
+            .user-pagination {
+                display          : flex;
+                justify-content  : center;
+            }
+        }
     }
 }
