@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from 'react-icons/fc';
 import { toast } from 'react-toastify';
-import { postCreatNewUser } from '../../../service/apiService';
+import { putUpdateUser } from '../../../service/apiService';
 import _ from 'lodash';
 
 const ModalUpdateUser = (props) => {
@@ -38,6 +38,7 @@ const ModalUpdateUser = (props) => {
         setRole('')
         setImage('')
         setPreviewImage('')
+        props.resetUpdateData()
 
     };
 
@@ -58,7 +59,7 @@ const ModalUpdateUser = (props) => {
             );
     };
 
-    const handleSubmitCreateUser = async () => {
+    const handleSubmitUpdateUser = async () => {
 
         const isValidEmail = validateEmail(email)
         if (!isValidEmail) {
@@ -66,22 +67,17 @@ const ModalUpdateUser = (props) => {
             return;
         }
 
-        if (!password) {
-            toast.error('Bạn chưa nhập mật khẩu')
-            return;
-        }
-
         //call api from service
-        let data = await postCreatNewUser(email, password, username, role, image)
+        let data = await putUpdateUser(dataUpdate.id, username, role, image)
 
         if (data && data.EC === 0) {
-            toast.success('Tạo người dùng thành công.')
+            toast.success('Cập nhật người dùng thành công.')
             handleClose()
             await props.fetchListUser();
         }
 
         if (data && data.EC !== 0) {
-            toast.error('Tạo người dùng thất bại.')
+            toast.error('Cập nhật người dùng thất bại.')
         }
     }
 
@@ -170,7 +166,7 @@ const ModalUpdateUser = (props) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button className='btn btn-warning' variant="primary" onClick={handleSubmitCreateUser}>
+                    <Button className='btn btn-warning' variant="primary" onClick={handleSubmitUpdateUser}>
                         Update
                     </Button>
                 </Modal.Footer>
