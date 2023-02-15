@@ -27,7 +27,7 @@ const TableUser = (props) => {
                                     <td>{item.email}</td>
                                     <td>{item.role}</td>
                                     <td>
-                                        <button className="btn btn-info">Views</button>
+                                        <button className="btn btn-info" onClick={() => props.handleShowViewModal(item)}>Views</button>
                                         <button className="btn btn-warning mx-3" onClick={() => props.handleClickBtnUpdate(item)}>Update</button>
                                         <button className="btn btn-danger">Delete</button>
                                     </td>
