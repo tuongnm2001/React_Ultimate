@@ -1,4 +1,4 @@
-.login-container {
+.register-container {
 
     .header {
         height          : 45px;
@@ -9,9 +9,9 @@
         gap             : 3px;
         margin-bottom   : 30px;
 
-        .back-home {
+        .back-home-register {
             float         : left;
-            margin-right  : 950px;
+            margin-right  : 1050px;
             cursor        : pointer;
             color         : #262627;
 
@@ -94,19 +94,11 @@
             color          : white;
             background     : #262627;
         }
-
-        .forgot-password {
-            color            : #777;
-            font-size        : 16px;
-            margin-bottom    : 20px;
-            text-decoration  : underline;
-        }
-
     }
 
     .eye {
-        margin-left  : 810px;
-        margin-top   : -153px;
+        margin-left  : 808px;
+        margin-top   : -207px;
         cursor       : pointer;
 
         .eye-show {
