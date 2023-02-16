@@ -5,6 +5,8 @@ import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { postLogin } from '../../service/apiService';
 import { toast } from 'react-toastify';
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { useDispatch } from 'react-redux';
+import { doLogin } from '../../redux/action/userActions';
 
 function Login(props) {
 
@@ -13,7 +15,7 @@ function Login(props) {
     const [showHidePassword, setShowHidePassword] = useState(false)
 
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
 
     const handleBackHome = () => {
         navigate('/')
@@ -29,6 +31,7 @@ function Login(props) {
         //submit api
         let data = await postLogin(email, password)
         if (data && data.EC === 0) {
+            dispatch(doLogin(data))
             toast.success('Đăng nhập thành công.')
             navigate('/')
         }
