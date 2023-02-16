@@ -7,12 +7,14 @@ import { toast } from 'react-toastify';
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userActions';
+import { ImSpinner8 } from 'react-icons/im'
 
 function Login(props) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [showHidePassword, setShowHidePassword] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -27,17 +29,19 @@ function Login(props) {
 
     const handleLogin = async () => {
         //validate
-
+        setIsLoading(true)
         //submit api
         let data = await postLogin(email, password)
         if (data && data.EC === 0) {
             dispatch(doLogin(data))
             toast.success('Đăng nhập thành công.')
+            setIsLoading(false)
             navigate('/')
         }
 
         if (data && data.EC !== 0) {
             toast.error(data.EM)
+            setIsLoading(false)
         }
     }
 
@@ -87,7 +91,9 @@ function Login(props) {
                     />
                     <span className='forgot-password'>Forgot password ?</span>
                     <div>
-                        <button onClick={() => handleLogin()} className='btn-submit'>Login in</button>
+                        <button disabled={isLoading} onClick={() => handleLogin()} className='btn-submit'>
+                            Login &ensp;{isLoading === true && <ImSpinner8 className="loader-icon" />}
+                        </button>
                     </div>
                 </div>
             </div>
