@@ -16,7 +16,6 @@ const getAllUser = () => {
     return axios.get('/api/v1/participant/all')
 }
 
-
 const putUpdateUser = (id, username, role, image) => {
     //call api
     const data = new FormData();
@@ -52,6 +51,10 @@ const getDataQuiz = (quizId) => {
     return axios.get(`/api/v1/questions-by-quiz?quizId=${quizId}`)
 }
 
+const postSubmitQuiz = (data) => {
+    return axios.post(`/api/v1/quiz-submit`, { ...data });
+}
+
 export {
     postCreatNewUser,
     getAllUser,
@@ -61,5 +64,6 @@ export {
     postLogin,
     postRegister,
     getQuizByUser,
-    getDataQuiz
+    getDataQuiz,
+    postSubmitQuiz
 }
