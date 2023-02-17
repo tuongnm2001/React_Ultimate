@@ -50,7 +50,6 @@ const DetailQuiz = (props) => {
             setDataQuiz(data);
         }
     }
-    console.log('check data quiz : ', dataQuiz);
 
     const handlePrev = () => {
         if (index - 1 < 0) return;
@@ -64,7 +63,32 @@ const DetailQuiz = (props) => {
     }
 
     const handleFinish = () => {
+        console.log('check data 22 : ', dataQuiz);
+        let payload = {
+            quizId: +quizId,
+            answers: []
+        };
+        let answers = []
+        if (dataQuiz && dataQuiz.length > 0) {
+            dataQuiz.forEach(item => {
 
+                let questionId = item.questionId
+                let userAnswersId = [];
+
+                //todo : userAnswersId
+                item.answers.forEach(item => {
+                    if (item.isSelected === true) {
+                        userAnswersId.push(item.id)
+                    }
+                })
+                answers.push({
+                    questionId: +questionId,
+                    userAnswersId: userAnswersId
+                })
+            })
+            payload.answers = answers
+            console.log('payload final : ', payload);
+        }
     }
 
     const handleCheckbox = (answerId, questionId) => {
