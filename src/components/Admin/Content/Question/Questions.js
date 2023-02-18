@@ -5,6 +5,7 @@ import { AiOutlinePlusCircle, AiOutlineMinusCircle, AiOutlinePlusSquare, AiOutli
 import { RiImageAddFill } from 'react-icons/ri';
 import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash';
+import Lightbox from "react-awesome-lightbox";
 
 const Questions = () => {
 
@@ -32,6 +33,12 @@ const Questions = () => {
         }
     ])
 
+    const [isPreviewImage, setIsPreviewImage] = useState(false)
+
+    const [dataImagePreview, setDataImagePreview] = useState({
+        title: '',
+        url: ''
+    })
 
     const handleAddRemoveQuestion = (type, id) => {
         if (type === 'ADD') {
@@ -130,6 +137,18 @@ const Questions = () => {
         console.log('question : ', question);
     }
 
+    const handlePreviewImage = (questionId) => {
+        let questionClone = _.cloneDeep(question);
+        let index = questionClone.findIndex(item => item.id === questionId);
+        if (index > -1) {
+            setDataImagePreview({
+                url: URL.createObjectURL(questionClone[index].imageFile),
+                title: questionClone[index].imageName
+            })
+            setIsPreviewImage(true);
+        }
+    }
+
     return (
         <div className="questions-container">
             <div className="title">
@@ -175,7 +194,7 @@ const Questions = () => {
                                             onChange={(event) => handleOnChangeFileAction(item.id, event)}
                                             hidden
                                         />
-                                        <span>{item.imageName ? item.imageName : '0 file is upload'}</span>
+                                        <span>{item.imageName ? <span onClick={() => handlePreviewImage(item.id)}>{item.imageName}</span> : '0 file is upload'}</span>
                                     </div>
 
                                     <div className="btn-add">
@@ -247,6 +266,16 @@ const Questions = () => {
                             Save Question
                         </button>
                     </div>
+                }
+
+                {
+                    isPreviewImage === true &&
+                    <Lightbox
+                        image={dataImagePreview.url}
+                        title={dataImagePreview.title}
+                        onClose={() => setIsPreviewImage(false)}
+
+                    />
                 }
 
             </div>
