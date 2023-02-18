@@ -1,8 +1,8 @@
 import './ManageQuiz.scss'
 import Select from 'react-select'
 import { toast } from 'react-toastify';
-import { useState } from 'react'
-import { postCreactNewQuiz } from '../../../../service/apiService'
+import { useEffect, useRef, useState } from 'react'
+import { postCreactNewQuiz, getAllQuizForAdmin } from '../../../../service/apiService'
 import TableQuiz from './TableQuiz';
 import Accordion from 'react-bootstrap/Accordion';
 
@@ -12,6 +12,17 @@ const ManageQuiz = (props) => {
     const [description, setDescription] = useState('')
     const [type, setType] = useState('')
     const [image, setImage] = useState(null)
+
+    const [listQuiz, setListQuiz] = useState([])
+
+
+    const fetAllQuiz = async () => {
+        // setDataDelete({})
+        let res = await getAllQuizForAdmin();
+        if (res && res.EC === 0) {
+            setListQuiz(res.DT)
+        }
+    }
 
     const options = [
         { value: 'EASY', label: 'EASY' },
@@ -38,7 +49,7 @@ const ManageQuiz = (props) => {
             setName('')
             setDescription('')
             setImage(null)
-
+            fetAllQuiz();
         } else {
             toast.error(res.EM)
         }
@@ -46,9 +57,8 @@ const ManageQuiz = (props) => {
 
     return (
         <div className="quiz-container">
-
-            <Accordion defaultActiveKey="0">
-                <Accordion.Item eventKey="0">
+            <Accordion defaultActiveKey="0" >
+                <Accordion.Item eventKey="1">
                     <Accordion.Header>Manage Quiz</Accordion.Header>
                     <Accordion.Body>
                         <div className="add-new">
@@ -73,6 +83,7 @@ const ManageQuiz = (props) => {
                                         placeholder="Password"
                                         value={description}
                                         onChange={(event) => setDescription(event.target.value)}
+
                                     />
                                     <label htmlFor="floatingPassword">Description</label>
                                 </div>
@@ -106,7 +117,10 @@ const ManageQuiz = (props) => {
             </Accordion>
 
             <div className="lits-detail">
-                <TableQuiz />
+                <TableQuiz
+                    listQuiz={listQuiz}
+                    fetAllQuiz={fetAllQuiz}
+                />
             </div>
         </div>
     )

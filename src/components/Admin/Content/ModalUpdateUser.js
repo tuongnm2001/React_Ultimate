@@ -158,8 +158,6 @@ const ModalUpdateUser = (props) => {
                                     :
                                     <span>Preview Image</span>
                             }
-
-
                         </div>
                     </form>
                 </Modal.Body>

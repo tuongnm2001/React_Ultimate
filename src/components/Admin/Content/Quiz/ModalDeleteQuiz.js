@@ -1,26 +1,22 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { deleteUser } from '../../../service/apiService';
 import { toast } from 'react-toastify';
+import { getDeleteQuiz } from '../../../../service/apiService';
 
-const ModalDeleteUser = (props) => {
-    const { show, setShow, dataDelete } = props;
+const ModalDeleteQuiz = (props) => {
+    const { show, setShow, dataDelete, fetAllQuiz } = props;
 
     const handleClose = () => setShow(false);
 
-    const handleSubmitDeleteUser = async () => {
-        const data = await deleteUser(dataDelete.id);
-
+    const handleDeleteSubmit = async () => {
+        const data = await getDeleteQuiz(dataDelete.id);
+        console.log('check data : ', data);
         if (data && data.EC === 0) {
             toast.success('Xóa người dùng thành công.')
             handleClose();
-            // await props.fetchListUser();
-            props.setCurrentPage(1);
-            await props.fetchListUserWithPaginate(1);
-        }
-
-        if (data && data.EC !== 0) {
+            await fetAllQuiz();
+        } else {
             toast.error('Xóa người dùng thất bại.')
         }
     }
@@ -34,18 +30,18 @@ const ModalDeleteUser = (props) => {
                 size='md'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>DELETE USER</Modal.Title>
+                    <Modal.Title>DELETE QUIZ</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    Bạn có muốn xóa <b style={{ color: 'red' }}>{dataDelete && dataDelete.email ? dataDelete.email : ''}</b> không ?
+                    Bạn có muốn xóa <b style={{ color: 'red' }}>{dataDelete && dataDelete.name ? dataDelete.name : ''}</b> không ?
                 </Modal.Body>
 
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Cancel
+                        CLose
                     </Button>
-                    <Button className='btn btn-danger' onClick={() => handleSubmitDeleteUser()}>
+                    <Button className='btn btn-danger' onClick={() => handleDeleteSubmit()}>
                         Delete
                     </Button>
                 </Modal.Footer>
@@ -54,4 +50,4 @@ const ModalDeleteUser = (props) => {
     );
 }
 
-export default ModalDeleteUser;
+export default ModalDeleteQuiz;
