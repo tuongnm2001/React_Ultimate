@@ -9,9 +9,7 @@ import Lightbox from "react-awesome-lightbox";
 import { useEffect } from "react";
 import {
     getAllQuizForAdmin,
-    postCreateNewQuestionForQuiz,
-    postCreateNewAnswerForQuestion,
-    getQuizWithQA
+    getQuizWithQA, postUpsertQA
 } from "../../../../service/apiService";
 import { toast } from 'react-toastify';
 
@@ -235,16 +233,29 @@ const QuizQA = () => {
         }
 
         //submit questions
-        for (const questionA of question) {
-            const q = await postCreateNewQuestionForQuiz(+selectedQuiz.value, questionA.description, questionA.imageFile);
-            //submit answers
-            for (const answer of questionA.answers) {
-                await postCreateNewAnswerForQuestion(answer.description, answer.isCorrect, q.DT.id)
+        let questionClone = _.cloneDeep(question);
+        for (let i = 0; i < questionClone.length; i++) {
+            if (questionClone[i].imageFile) {
+                questionClone[i].imageFile = await toBase64(questionClone[i].imageFile);
             }
         }
-        toast.success('Create Question and Answers success')
-        setQuestion(initQuestion);
+        let res = await postUpsertQA({
+            quizId: selectedQuiz.value,
+            questions: questionClone
+        });
+
+        if (res && res.EC === 0) {
+            toast.success(res.EM)
+            fetchQuizWithQA();
+        }
     }
+
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
 
     const handlePreviewImage = (questionId) => {
         let questionClone = _.cloneDeep(question);
