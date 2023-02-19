@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react'
 import { postCreactNewQuiz, getAllQuizForAdmin } from '../../../../service/apiService'
 import TableQuiz from './TableQuiz';
 import Accordion from 'react-bootstrap/Accordion';
+import QuizQA from './QuizQA';
+import AssignQuiz from './AssignQuiz';
 
 const ManageQuiz = (props) => {
 
@@ -58,7 +60,7 @@ const ManageQuiz = (props) => {
     return (
         <div className="quiz-container">
             <Accordion defaultActiveKey="0" >
-                <Accordion.Item eventKey="1">
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>Manage Quiz</Accordion.Header>
                     <Accordion.Body>
                         <div className="add-new">
@@ -112,16 +114,32 @@ const ManageQuiz = (props) => {
                             </fieldset>
 
                         </div>
+
+                        <div className="lits-detail">
+                            <TableQuiz
+                                listQuiz={listQuiz}
+                                fetAllQuiz={fetAllQuiz}
+                            />
+                        </div>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="1">
+                    <Accordion.Header>Update Q/A Quiz</Accordion.Header>
+                    <Accordion.Body>
+                        <QuizQA />
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="2">
+                    <Accordion.Header>Assign to User</Accordion.Header>
+                    <Accordion.Body>
+                        <AssignQuiz />
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
 
-            <div className="lits-detail">
-                <TableQuiz
-                    listQuiz={listQuiz}
-                    fetAllQuiz={fetAllQuiz}
-                />
-            </div>
+
         </div>
     )
 }
