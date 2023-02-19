@@ -6,18 +6,15 @@ import { RiImageAddFill } from 'react-icons/ri';
 import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash';
 import Lightbox from "react-awesome-lightbox";
+import { useEffect } from "react";
+import {
+    getAllQuizForAdmin, postCreateNewQuestionForQuiz, postCreateNewAnswerForQuestion
+} from "../../../../service/apiService";
+import { toast } from 'react-toastify';
 
 const Questions = () => {
 
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-    ]
-
-    const [selectedQuiz, setSelectedQuiz] = useState('')
-
-    const [question, setQuestion] = useState([
+    const initQuestion = [
         {
             id: uuidv4(),
             description: '',
@@ -31,20 +28,40 @@ const Questions = () => {
                 }
             ]
         }
-    ])
+    ]
+    const [question, setQuestion] = useState(initQuestion)
 
     const [isPreviewImage, setIsPreviewImage] = useState(false)
-
     const [dataImagePreview, setDataImagePreview] = useState({
         title: '',
         url: ''
     })
 
+    const [listQuiz, setListQuiz] = useState([])
+    const [selectedQuiz, setSelectedQuiz] = useState({})
+
+    useEffect(() => {
+        fetAllQuiz();
+    }, [])
+
+    const fetAllQuiz = async () => {
+        let res = await getAllQuizForAdmin();
+        if (res && res.EC === 0) {
+            let newQuiz = res.DT.map(item => {
+                return {
+                    value: item.id,
+                    label: `${item.id} - ${item.description}`
+                }
+            })
+            setListQuiz(newQuiz)
+        }
+    }
+
     const handleAddRemoveQuestion = (type, id) => {
         if (type === 'ADD') {
             const newQuestion = {
                 id: uuidv4(),
-                description: 'question 1',
+                description: '',
                 imageFile: '',
                 imageName: '',
                 answers: [
@@ -133,8 +150,65 @@ const Questions = () => {
         }
     }
 
-    const handleSubmitQuestionForQuiz = () => {
-        console.log('question : ', question);
+    const handleSubmitQuestionForQuiz = async () => {
+        //validate
+        if (_.isEmpty(selectedQuiz)) {
+            toast.error('Please choose a quiz')
+            return;
+        }
+
+        //validate answers
+        let isValidAnswers = true;
+        let indexQ = 0;
+        let indexA = 0;
+
+        for (let i = 0; i < question.length; i++) {
+
+            for (let j = 0; j < question[i].answers.length; j++) {
+                if (!question[i].answers[j].description) {
+                    isValidAnswers = false;
+                    indexA = j
+                    break;
+                }
+            }
+            indexQ = i
+            if (isValidAnswers === false) {
+                break;
+            }
+        }
+
+        if (isValidAnswers === false) {
+            toast.error(`Not empty answer ${indexA + 1} at Question ${indexQ + 1}`)
+            return;
+        }
+
+        //validate question
+        let isValidQ = true;
+        let indexQ1 = 0;
+
+        for (let i = 0; i < question.length; i++) {
+            if (!question[i].description) {
+                isValidQ = false
+                indexQ1 = 1
+                break;
+            }
+        }
+
+        if (isValidQ === false) {
+            toast.error(`Not empty description from Questions ${indexQ1 + 1}`)
+            return;
+        }
+
+        //submit questions
+        for (const questionA of question) {
+            const q = await postCreateNewQuestionForQuiz(+selectedQuiz.value, questionA.description, questionA.imageFile);
+            //submit answers
+            for (const answer of questionA.answers) {
+                await postCreateNewAnswerForQuestion(answer.description, answer.isCorrect, q.DT.id)
+            }
+        }
+        toast.success('Create Question and Answers success')
+        setQuestion(initQuestion);
     }
 
     const handlePreviewImage = (questionId) => {
@@ -163,7 +237,7 @@ const Questions = () => {
                     <Select
                         defaultValue={selectedQuiz}
                         onChange={setSelectedQuiz}
-                        options={options}
+                        options={listQuiz}
                     />
                 </div>
 
