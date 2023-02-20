@@ -88,7 +88,6 @@ const DetailQuiz = (props) => {
     }
 
     const handleFinishQuiz = async () => {
-        console.log('check data 22 : ', dataQuiz);
         let payload = {
             quizId: +quizId,
             answers: []
@@ -158,6 +157,8 @@ const DetailQuiz = (props) => {
             <div className="right-content">
                 <RightContent
                     dataQuiz={dataQuiz}
+                    handleFinishQuiz={handleFinishQuiz}
+                    setIndex={setIndex}
                 />
             </div>
 
