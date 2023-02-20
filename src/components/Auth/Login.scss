@@ -17,24 +17,16 @@
     }
 
     .header {
-        height          : 45px;
-        float           : right;
-        align-items     : center;
-        padding         : 8px 24px;
-        flex-direction  : row;
-        gap             : 3px;
-        margin-bottom   : 30px;
-
-        .back-home {
-            float         : left;
-            margin-right  : 950px;
-            cursor        : pointer;
-            color         : #262627;
-
-            &:hover {
-                color  : #777;
-            }
-        }
+        height           : 45px;
+        width            : 100%;
+        float            : right;
+        align-items      : center;
+        padding          : 8px 24px;
+        flex-direction   : row;
+        gap              : 3px;
+        margin-bottom    : 30px;
+        display          : flex;
+        justify-content  : right;
 
         .title-header {
             font-size      : 14px;
@@ -70,6 +62,10 @@
             cursor           : pointer;
             font-weight      : 600;
         }
+
+        .language {
+            margin-left  : 5px;
+        }
     }
 
     .title {
@@ -85,6 +81,19 @@
         padding     : 10px 0;
         text-align  : center;
         margin-top  : -40px;
+    }
+
+    .back-home {
+        float        : left;
+        margin-top   : -65px;
+        margin-left  : 22px;
+        cursor       : pointer;
+        color        : #262627;
+        object-fit   : contain;
+
+        &:hover {
+            color  : #777;
+        }
     }
 
     .content-form {

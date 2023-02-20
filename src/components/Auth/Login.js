@@ -8,6 +8,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userActions';
 import { ImSpinner8 } from 'react-icons/im'
+import Languages from '../Header/Languages';
 
 function Login(props) {
 
@@ -61,8 +62,9 @@ function Login(props) {
                 <span className='title-header'>Don't you have an account yet?</span>
                 <button className='btn-sign-up' onClick={() => handleRegister()}>Sign up</button>
                 <span className='need-help'>Need help?</span>
-                <span className='back-home' onClick={() => handleBackHome()}> <BsFillArrowLeftCircleFill /> Home </span>
+                <div className='language'><Languages /></div>
             </div>
+            <span className='back-home' onClick={() => handleBackHome()}> <BsFillArrowLeftCircleFill /> Home </span>
 
             <div className='title col-4 mx-auto'>
                 Tuong NM
