@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getQuizByUser } from "../../service/apiService";
 import './ListQuiz.scss'
 import { useNavigate } from "react-router-dom";
+import _ from 'lodash'
 
 const ListQuiz = (props) => {
 
@@ -17,16 +18,17 @@ const ListQuiz = (props) => {
         if (res && res.EC === 0) {
             setArrQuiz(res.DT)
         }
-        console.log('check res : ', res);
     }
 
-    console.log('check arrquiz : ', arrQuiz);
+    let sortArrQuiz = _.orderBy(arrQuiz, ['id'], ['asc'])
+
+    console.log('check sortArrQuiz : ', sortArrQuiz);
 
     return (
         <div className="list-quiz-container container">
             {
-                arrQuiz && arrQuiz.length > 0 &&
-                arrQuiz.map((item, index) => {
+                sortArrQuiz && sortArrQuiz.length > 0 &&
+                sortArrQuiz.map((item, index) => {
                     return (
                         <div key={`${index}-quiz`} className="card" style={{ width: '18rem' }}>
                             <img src={`data:image/jpeg;base64,${item.image}`} className="card-img-top" alt="..." />

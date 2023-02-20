@@ -11,7 +11,22 @@
         width  : 100%;
 
         .admin-header {
-            height  : 40px;
+            padding          : 0 20px 0 10px;
+            align-items      : center;
+            display          : flex;
+            justify-content  : space-between;
+            height           : 60px;
+            cursor           : pointer;
+
+            .left-side {
+                font-size  : 22px;
+                color      : #889793;
+            }
+
+            .right-side {
+                display  : flex;
+                gap      : 15px;
+            }
         }
 
         .admin-main {
