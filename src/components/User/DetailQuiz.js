@@ -136,6 +136,7 @@ const DetailQuiz = (props) => {
                 <div className="title">
                     Quiz :{quizId} {location?.state.quizTitle}
                 </div>
+                <span>( Choose an answer )</span>
                 <hr />
                 <div className="q-body">
                     <img />

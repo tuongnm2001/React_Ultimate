@@ -57,8 +57,25 @@ body {
       }
     }
 
-    .setting {
-      padding-right  : 18px;
+    .account-image {
+      display  : flex;
+      gap      : 13px;
+
+      img {
+        height         : 30px;
+        width          : 30px;
+        border-radius  : 50%;
+        object-fit     : cover;
+      }
+
+      .accEmail {
+        margin-right  : 5px;
+        margin-left   : -5px;
+      }
+    }
+
+    .dropdown-toggle:after {
+      content  : none
     }
 
     .navbar {

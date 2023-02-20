@@ -8,6 +8,7 @@ import { logOut } from '../../service/apiService';
 import { toast } from 'react-toastify';
 import { doLogout } from '../../redux/action/userActions';
 import Languages from './Languages';
+import { FiSettings } from 'react-icons/fi';
 
 const Header = () => {
 
@@ -36,6 +37,8 @@ const Header = () => {
         }
     }
 
+    console.log('check account : ', account);
+
     return (
         <Navbar bg="light" expand="lg">
             <Container>
@@ -57,10 +60,35 @@ const Header = () => {
                                     <button className='btn-signup' onClick={() => handleRegister()}>Sign up</button>
                                 </>
                                 :
-                                <NavDropdown className='setting' title="Setting" id="basic-nav-dropdown">
-                                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                                    <NavDropdown.Item onClick={() => handleLogout()}>Log out</NavDropdown.Item>
-                                </NavDropdown>
+                                <>
+                                    {/* <div className='account-image'>
+                                        <div>
+                                            <img src={`data:image/jpeg;base64,${account.image}`} />
+                                        </div>
+                                        <div className='accEmail'>{account.email}</div>
+                                    </div> */}
+
+                                    <div>
+
+                                        <NavDropdown className='setting' dropdown-toggle='false'
+                                            title={
+                                                <>
+                                                    <div className='account-image'>
+                                                        <div>
+                                                            <img src={`data:image/jpeg;base64,${account.image}`} />
+                                                        </div>
+                                                        <div className='accEmail'>{account.email}</div>
+                                                    </div>
+                                                </>
+                                            }
+
+                                        >
+                                            <NavDropdown.Item>Profile</NavDropdown.Item>
+                                            <NavDropdown.Item onClick={() => handleLogout()}>Log out</NavDropdown.Item>
+                                        </NavDropdown>
+                                    </div>
+                                </>
+
                         }
 
                         <Languages />

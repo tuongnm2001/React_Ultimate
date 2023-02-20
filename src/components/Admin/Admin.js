@@ -7,8 +7,10 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import Languages from "../Header/Languages";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { doLogout } from '../../redux/action/userActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Admin = (props) => {
+    const account = useSelector(state => state.user.account);
 
     const [collapsed, setCollapsed] = useState(false)
 
@@ -27,12 +29,24 @@ const Admin = (props) => {
                     </span>
 
                     <div className="right-side">
-                        <Languages />
-
-                        <NavDropdown className='setting' title="Setting" id="basic-nav-dropdown">
+                        <NavDropdown
+                            className='setting'
+                            dropdown-toggle='false'
+                            title={
+                                <>
+                                    <div className='account-image'>
+                                        <div>
+                                            <img src={`data:image/jpeg;base64,${account.image}`} />
+                                        </div>
+                                        <div className='accEmail'>{account.email}</div>
+                                    </div>
+                                </>
+                            }>
                             <NavDropdown.Item>Profile</NavDropdown.Item>
                             <NavDropdown.Item>Log out</NavDropdown.Item>
                         </NavDropdown>
+
+                        <Languages />
                     </div>
                 </div>
 
