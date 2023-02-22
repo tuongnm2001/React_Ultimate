@@ -3,9 +3,12 @@ import { useTranslation, Trans } from 'react-i18next';
 import vietnam from '../../assets/vietnam.png';
 import uk from '../../assets/uk.png'
 import './Languages.scss'
+import { useState } from "react";
+
 const Languages = (props) => {
 
     const { t, i18n } = useTranslation();
+    const [isShowHide, setIsShowHide] = useState(false)
 
     const handleChangLanguage = (language) => {
         i18n.changeLanguage(language)
@@ -14,6 +17,9 @@ const Languages = (props) => {
     return (
         <NavDropdown
             className='languages'
+            onMouseEnter={() => setIsShowHide(true)}
+            onMouseLeave={() => setIsShowHide(false)}
+            show={isShowHide}
             title=
             {
                 i18n.language === 'vi' ?

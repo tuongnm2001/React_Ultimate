@@ -1,0 +1,43 @@
+.history-container {
+    .content-up {
+        display          : flex;
+        gap              : 15px;
+        justify-content  : center;
+        text-align       : right;
+
+
+        .history {
+            border-radius  : 5px;
+            width          : 200px;
+            height         : 90px;
+            margin-bottom  : 25px;
+            padding-right  : 5px;
+            padding-top    : 10px;
+            text-align     : right;
+            color          : rgb(17, 22, 22);
+            box-shadow     : 3px 3px 5px #888888;
+
+            &.a {
+                background-color  : rgb(162, 235, 235);
+            }
+
+            &.b {
+                background-color  : rgb(227, 217, 176);
+            }
+
+            &.c {
+                background-color  : rgb(232, 172, 186);
+            }
+
+            &.d {
+                background-color  : rgb(196, 232, 165);
+            }
+
+            .title {
+                font-size      : 18px;
+                font-weight    : 500;
+                margin-bottom  : 2px;
+            }
+        }
+    }
+}

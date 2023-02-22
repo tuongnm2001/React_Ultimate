@@ -3,9 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { deleteUser } from '../../../service/apiService';
 import { toast } from 'react-toastify';
+import { useTranslation, Trans } from 'react-i18next';
 
 const ModalDeleteUser = (props) => {
     const { show, setShow, dataDelete } = props;
+    const { t } = useTranslation();
 
     const handleClose = () => setShow(false);
 
@@ -34,19 +36,19 @@ const ModalDeleteUser = (props) => {
                 size='md'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>DELETE USER</Modal.Title>
+                    <Modal.Title>{t('manage-user.title-delete')}</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    Bạn có muốn xóa <b style={{ color: 'red' }}>{dataDelete && dataDelete.email ? dataDelete.email : ''}</b> không ?
+                    {t('manage-user.delete-user')} <b style={{ color: 'red' }}>{dataDelete && dataDelete.email ? dataDelete.email : ''}</b>
                 </Modal.Body>
 
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Cancel
+                        {t('setting.close')}
                     </Button>
                     <Button className='btn btn-danger' onClick={() => handleSubmitDeleteUser()}>
-                        Delete
+                        {t('setting.delete')}
                     </Button>
                 </Modal.Footer>
             </Modal>

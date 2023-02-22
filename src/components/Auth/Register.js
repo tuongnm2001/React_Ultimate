@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.scss'
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { postRegister } from '../../service/apiService';
 import { toast } from 'react-toastify';
 import './Register.scss'
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { useTranslation, Trans } from 'react-i18next';
 
 function Register(props) {
 
@@ -13,6 +13,7 @@ function Register(props) {
     const [password, setPassword] = useState('')
     const [username, setUsername] = useState('')
     const [showHidePassword, setShowHidePassword] = useState(false)
+    const { t } = useTranslation();
 
     const navigate = useNavigate();
 
@@ -65,17 +66,17 @@ function Register(props) {
     return (
         <div className="register-container">
             <div className='header'>
-                <span className='title-header'>Already have an account?</span>
-                <button className='btn-sign-up' onClick={() => handleLogin()}>Login</button>
-                <span className='back-home-register' onClick={() => handleBackHome()}> <BsFillArrowLeftCircleFill /> Home </span>
+                <span className='title-header'>{t('login.title')}</span>
+                <button className='btn-sign-up' onClick={() => handleLogin()}>{t('login.login')}</button>
+                <span className='back-home-register' onClick={() => handleBackHome()}> <BsFillArrowLeftCircleFill /> {t('login.home')} </span>
             </div>
 
             <div className='title col-4 mx-auto'>
-                REGISTER
+                {t('register.register')}
             </div>
 
             <div className='welcome col-4 mx-auto'>
-                Hello , who's this?
+                {t('register.hello')}
             </div>
 
             <div className='content-form col-4 mx-auto'>
@@ -87,7 +88,7 @@ function Register(props) {
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                     />
-                    <label>Password (*)</label>
+                    <label>{t('register.password')} (*)</label>
                     <input
                         type={showHidePassword ? 'text' : 'password'}
                         className='form-control'
@@ -95,14 +96,14 @@ function Register(props) {
                         onChange={(event) => setPassword(event.target.value)}
                     />
 
-                    <label>Username</label>
+                    <label>{t('register.username')}</label>
                     <input type='text'
                         value={username}
                         className='form-control'
                         onChange={(event) => setUsername(event.target.value)}
                     />
                     <div>
-                        <button onClick={() => handleRegister()} className='btn-submit'>Register</button>
+                        <button onClick={() => handleRegister()} className='btn-submit'>{t('register.register1')}</button>
                     </div>
                 </div>
             </div>

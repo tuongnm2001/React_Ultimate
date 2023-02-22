@@ -1,3 +1,7 @@
+.sidebar-header {
+    text-align  : center;
+}
+
 .sidebar-btn-wrapper {
     display          : flex;
     align-items      : center;
@@ -28,5 +32,12 @@
             color  : #dee2ec;
             ;
         }
+
     }
+}
+
+.logo {
+    font-size     : 40px;
+    margin-right  : 12px;
+    color         : #eb5656;
 }

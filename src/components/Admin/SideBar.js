@@ -14,12 +14,14 @@ import sidebarBg from '../../assets/bg2.jpg';
 import './SideBar.scss'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { ImTumblr2 } from 'react-icons/im';
+import { useTranslation, Trans } from 'react-i18next';
 
 const SideBar = (props) => {
 
     const { image, collapsed, toggled, handleToggleSidebar } = props;
-
     const navigate = useNavigate()
+    const { t } = useTranslation();
 
     const handleGoBackHome = () => {
         navigate('/')
@@ -34,7 +36,7 @@ const SideBar = (props) => {
                 breakPoint="md"
                 onToggle={handleToggleSidebar}
             >
-                <SidebarHeader>
+                <SidebarHeader className='sidebar-header'>
                     <div onClick={() => handleGoBackHome()}
                         style={{
                             padding: '24px',
@@ -48,7 +50,7 @@ const SideBar = (props) => {
                             cursor: 'pointer'
                         }}
                     >
-                        <DiReact size={'3em'} color={'00bfff'} /> &ensp;
+                        <ImTumblr2 className='logo' />
                         <span>Tuong NM</span>
                     </div>
                 </SidebarHeader>
@@ -58,17 +60,17 @@ const SideBar = (props) => {
                         <MenuItem
                             icon={<FaTachometerAlt />}
                         >
-                            Dashboard <Link to='/admins' />
+                            {t('sidebar.Dashboard')} <Link to='/admins' />
                         </MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
                         <SubMenu
                             icon={<FaGem />}
-                            title='Features'
+                            title={t('sidebar.manage')}
                         >
-                            <MenuItem>Quản lý Người Dùng <Link to='/admins/manage-users' /></MenuItem>
-                            <MenuItem>Quản lý Bài Thi <Link to='/admins/manage-quiz' /></MenuItem>
-                            <MenuItem>Quản lý Câu Hỏi <Link to='/admins/manage-questions' /></MenuItem>
+                            <MenuItem>{t('sidebar.manage-users')} <Link to='/admins/manage-users' /></MenuItem>
+                            <MenuItem>{t('sidebar.manage-quiz')} <Link to='/admins/manage-quiz' /></MenuItem>
+                            <MenuItem>{t('sidebar.manage-question')} <Link to='/admins/manage-questions' /></MenuItem>
                         </SubMenu>
 
                     </Menu>

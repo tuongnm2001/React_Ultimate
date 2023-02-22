@@ -12,6 +12,7 @@ import {
     getQuizWithQA, postUpsertQA
 } from "../../../../service/apiService";
 import { toast } from 'react-toastify';
+import { useTranslation, Trans } from 'react-i18next';
 
 const QuizQA = () => {
 
@@ -31,7 +32,7 @@ const QuizQA = () => {
         }
     ]
     const [question, setQuestion] = useState(initQuestion)
-
+    const { t } = useTranslation();
     const [isPreviewImage, setIsPreviewImage] = useState(false)
     const [dataImagePreview, setDataImagePreview] = useState({
         title: '',
@@ -273,7 +274,7 @@ const QuizQA = () => {
         <div className="questions-container">
             <div className="add-new-question">
                 <div className="col-6 form-group">
-                    <label className="mb-2">Select Quiz</label>
+                    <label className="mb-2">{t('manage-quiz.select-quiz')}</label>
                     <Select
                         defaultValue={selectedQuiz}
                         onChange={setSelectedQuiz}
@@ -281,7 +282,7 @@ const QuizQA = () => {
                     />
                 </div>
 
-                <div className="mt-3 mb-2">Add Questions</div>
+                <div className="mt-3 mb-2">{t('manage-quiz.add-question')}</div>
 
                 {
                     question && question.length > 0 &&
@@ -297,7 +298,7 @@ const QuizQA = () => {
                                             value={item.description}
                                             onChange={(event) => handleOnChange('QUESTION', item.id, event.target.value)}
                                         />
-                                        <label>Question {index + 1} Description</label>
+                                        <label>{t('detail-quiz.question')} {index + 1} {t('manage-quiz.description')}</label>
                                     </div>
 
                                     <div className="group-upload">
@@ -308,7 +309,7 @@ const QuizQA = () => {
                                             onChange={(event) => handleOnChangeFileAction(item.id, event)}
                                             hidden
                                         />
-                                        <span>{item.imageName ? <span onClick={() => handlePreviewImage(item.id)}>{item.imageName}</span> : '0 file is upload'}</span>
+                                        <span>{item.imageName ? <span onClick={() => handlePreviewImage(item.id)}>{item.imageName}</span> : t('manage-quiz.upload-img')}</span>
                                     </div>
 
                                     <div className="btn-add">
@@ -348,7 +349,7 @@ const QuizQA = () => {
                                                         placeholder="name@example.com"
                                                         onChange={(event) => handleAnswersQuestion('INPUT', answer.id, item.id, event.target.value)}
                                                     />
-                                                    <label >Answers {index + 1}</label>
+                                                    <label >{t('manage-quiz.answer')} {index + 1}</label>
                                                 </div>
 
                                                 <div className="btn-group">
@@ -377,7 +378,7 @@ const QuizQA = () => {
                     question && question.length > 0 &&
                     <div>
                         <button onClick={() => handleSubmitQuestionForQuiz()} className="btn btn-success">
-                            Save Question
+                            {t('setting.save')}
                         </button>
                     </div>
                 }

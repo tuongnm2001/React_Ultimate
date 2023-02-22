@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import ModalDeleteQuiz from "./ModalDeleteQuiz";
 import ModalUpdateQuiz from "./ModalUpdateQuiz";
+import { useTranslation, Trans } from 'react-i18next';
 
 const TableQuiz = (props) => {
 
@@ -13,6 +14,7 @@ const TableQuiz = (props) => {
     const [dataUpdate, setDataUpdate] = useState({})
 
     const { listQuiz, fetAllQuiz } = props
+    const { t } = useTranslation();
 
     useEffect(() => {
         fetAllQuiz();
@@ -38,15 +40,15 @@ const TableQuiz = (props) => {
 
     return (
         <>
-            <div>List Quiz</div>
-            <table className="table table-hover table-bordered my-2">
+            <div style={{ fontSize: '20px' }}>{t('manage-quiz.list-quiz')}</div>
+            <table className="table table-hover table-bordered my-5">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">{t('manage-quiz.name')}</th>
+                        <th scope="col">{t('manage-quiz.description')}</th>
+                        <th scope="col">{t('manage-quiz.quiz-type')}</th>
+                        <th scope="col">{t('manage-user.handle')}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,8 +62,8 @@ const TableQuiz = (props) => {
                                     <td>{item.description}</td>
                                     <td>{item.difficulty}</td>
                                     <td>
-                                        <button className="btn btn-warning mx-3" onClick={() => handleUpdateQuiz(item)}>Update</button>
-                                        <button className="btn btn-danger" onClick={() => handleDeleteQuiz(item)}>Delete</button>
+                                        <button className="btn btn-warning mx-3" onClick={() => handleUpdateQuiz(item)}>{t('setting.update')}</button>
+                                        <button className="btn btn-danger" onClick={() => handleDeleteQuiz(item)}>{t('setting.delete')}</button>
                                     </td>
                                 </tr>
                             )

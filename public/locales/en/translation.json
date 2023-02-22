@@ -5,5 +5,112 @@
         "title3": {
             "login": "Get's started. It's free"
         }
+    },
+    "header": {
+        "home": "Home",
+        "user": "User",
+        "admin": "Admin",
+        "login": "Login",
+        "sign-up": "Sign up",
+        "logout": "Logout",
+        "profile": "Profile"
+    },
+    "list-quiz": {
+        "button": "Start now",
+        "quiz": "Quiz"
+    },
+    "detail-quiz": {
+        "choose-answer": "Choose an answer",
+        "question": "Question",
+        "prev": "Prev",
+        "next": "Next",
+        "finish": "Finish",
+        "your-result": "YOUR RESULT",
+        "total-q": "Total Question",
+        "correct-answer": "Correct Answer",
+        "close": "Close",
+        "show-answer": "Show Answers"
+    },
+    "login": {
+        "home": "Home",
+        "no-account": "Don't you have an account yet?",
+        "sign-up": "Sign up",
+        "need-help": "Need help",
+        "hello": "Hello , who's this?",
+        "password": "Password",
+        "forgot-password": "Forgot password ?",
+        "login": "Login",
+        "login-sucess": "Login Success",
+        "login-fail": "Invalid Input Email/Password",
+        "title": "Already have an account?"
+    },
+    "register": {
+        "register": "REGISTER",
+        "hello": "Hello , who's this?",
+        "password": "Password",
+        "username": "Username",
+        "register1": "Register"
+    },
+    "admin": {
+        "logout": "Logout",
+        "profile": "Profile"
+    },
+    "dashboard": {
+        "title": "Analytics Dashboard",
+        "tuser": "Total Users",
+        "tquiz": "Total Quiz",
+        "tquestion": "Total Question",
+        "tanswers": "Total Answers"
+    },
+    "sidebar": {
+        "Dashboard": "Dashboard",
+        "manage": "Feature",
+        "manage-users": "Manage Users",
+        "manage-quiz": "Manage Quizs",
+        "manage-question": "Manage Questions"
+    },
+    "manage-user": {
+        "manage-user": "MANAGE USERS",
+        "adduser": "Add New User",
+        "username": "Username",
+        "role": "Role",
+        "handle": "Handle",
+        "view": "Views",
+        "update": "Update",
+        "delete": "Delete",
+        "title": "ADD NEW USER",
+        "upload-image": "Upload File Image",
+        "title-update": "UPDATE NEW USER",
+        "title-delete": "DELETE USER",
+        "delete-user": "Do you want to delete "
+    },
+    "setting": {
+        "password": "Password",
+        "username": "Username",
+        "role": "Role",
+        "close": "Close",
+        "save": "Save",
+        "update": "Update",
+        "delete": "Delete"
+    },
+    "manage-quiz": {
+        "manage-quiz": "Manage Quiz",
+        "add-new-quiz": "Add new Quiz",
+        "name": "Name",
+        "description": "Description",
+        "quiz-type": "Quiz Type",
+        "easy": "EASY",
+        "medium": "MEDIUM",
+        "hard": "HARD",
+        "list-quiz": "List Quiz",
+        "update-quiz": "UPDATE NEW QUIZ",
+        "delete-quiz": "DELETE QUIZ",
+        "update-question": "Update Q/A Quiz",
+        "assign-user": "Assign to User",
+        "select-quiz": "Select Quiz",
+        "add-question": "Add Question",
+        "answer": "Answer",
+        "upload-img": "0 file is upload",
+        "select-user": "Select User"
     }
 }

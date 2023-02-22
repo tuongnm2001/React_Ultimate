@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
+import { useTranslation, Trans } from 'react-i18next';
 
 const TableUserPaginate = (props) => {
     const { listUser, pageCount } = props
+    const { t } = useTranslation();
 
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {
@@ -17,10 +19,10 @@ const TableUserPaginate = (props) => {
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Username</th>
+                        <th scope="col">{t('manage-user.username')}</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Role</th>
-                        <th>Action</th>
+                        <th scope="col">{t('manage-user.role')}</th>
+                        <th>{t('manage-user.handle')}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,9 +36,9 @@ const TableUserPaginate = (props) => {
                                     <td>{item.email}</td>
                                     <td>{item.role}</td>
                                     <td>
-                                        <button className="btn btn-info" onClick={() => props.handleShowViewModal(item)}>Views</button>
-                                        <button className="btn btn-warning mx-3" onClick={() => props.handleClickBtnUpdate(item)}>Update</button>
-                                        <button className="btn btn-danger" onClick={() => props.handleDeleteUser(item)}>Delete</button>
+                                        <button className="btn btn-info" onClick={() => props.handleShowViewModal(item)}>{t('manage-user.view')}</button>
+                                        <button className="btn btn-warning mx-3" onClick={() => props.handleClickBtnUpdate(item)}>{t('manage-user.update')}</button>
+                                        <button className="btn btn-danger" onClick={() => props.handleDeleteUser(item)}>{t('manage-user.delete')}</button>
                                     </td>
                                 </tr>
                             )

@@ -3,9 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-toastify';
 import { getDeleteQuiz } from '../../../../service/apiService';
+import { useTranslation, Trans } from 'react-i18next';
 
 const ModalDeleteQuiz = (props) => {
     const { show, setShow, dataDelete, fetAllQuiz } = props;
+    const { t } = useTranslation();
 
     const handleClose = () => setShow(false);
 
@@ -30,19 +32,19 @@ const ModalDeleteQuiz = (props) => {
                 size='md'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>DELETE QUIZ</Modal.Title>
+                    <Modal.Title>{t('manage-quiz.delete-quiz')}</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    Bạn có muốn xóa <b style={{ color: 'red' }}>{dataDelete && dataDelete.name ? dataDelete.name : ''}</b> không ?
+                    {t('manage-user.delete-user')} <b style={{ color: 'red' }}>{dataDelete && dataDelete.name ? dataDelete.name : ''}</b>
                 </Modal.Body>
 
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        CLose
+                        {t('setting.close')}
                     </Button>
                     <Button className='btn btn-danger' onClick={() => handleDeleteSubmit()}>
-                        Delete
+                        {t('setting.save')}
                     </Button>
                 </Modal.Footer>
             </Modal>

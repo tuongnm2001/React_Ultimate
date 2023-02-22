@@ -27,7 +27,13 @@ body {
 }
 
 .app-container {
+
   .header-container {
+    .logo {
+      font-size     : 40px;
+      margin-right  : 12px;
+      color         : #eb5656;
+    }
 
     .btn-login {
       border-radius  : 5px;
@@ -37,6 +43,7 @@ body {
       width          : 75px;
       height         : 41px;
       background     : none;
+      font-size      : 12px;
 
       &:hover {
         opacity  : 0.8;
@@ -51,6 +58,7 @@ body {
       border         : none;
       width          : 86px;
       height         : 41px;
+      font-size      : 14px;
 
       &:hover {
         opacity  : 0.8;
@@ -79,9 +87,10 @@ body {
     }
 
     .navbar {
-      padding-top       : 20px;
-      z-index           : 10;
-      background-color  : rgba(0, 0, 0, 0) !important;
+      padding-top            : 20px;
+      z-index                : 10;
+      background-color       : rgb(250 250 250) !important;
+      // background-color  : rgba(185, 33, 33, 0) !important;
 
       .nav-link {
         &.active {
@@ -96,6 +105,7 @@ body {
   .app-content {
     height  : calc(100vh - 60px);
   }
+
 
   .homepage-content {
     padding         : 72px;

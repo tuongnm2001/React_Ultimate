@@ -8,15 +8,22 @@ import { logOut } from '../../service/apiService';
 import { toast } from 'react-toastify';
 import { doLogout } from '../../redux/action/userActions';
 import Languages from './Languages';
-import { FiSettings } from 'react-icons/fi';
+import { ImTumblr2 } from 'react-icons/im';
+import { useTranslation, Trans } from 'react-i18next';
+import { hover } from '@testing-library/user-event/dist/hover';
+import { useState } from 'react';
+import ModalProfile from './ModalProfile';
+import UpdateProfile from './UpdateProfile';
 
 const Header = () => {
 
     const isAuthenticated = useSelector(state => state.user.isAuthenticated);
     const account = useSelector(state => state.user.account);
     const dispath = useDispatch();
-
     const navigate = useNavigate();
+    const { t } = useTranslation();
+    const [isShowHide, setIsShowHide] = useState(false)
+    const [isShowModalProfile, setIsShowModalProfile] = useState(false)
 
     const handleLogin = () => {
         navigate('/login');
@@ -39,64 +46,71 @@ const Header = () => {
 
     console.log('check account : ', account);
 
+    const handleProfile = () => {
+        setIsShowModalProfile(true)
+    }
+
     return (
-        <Navbar bg="light" expand="lg">
-            <Container>
-                <NavLink to="/" className='navbar-brand'>Tuong NM</NavLink>
+        <>
+            <Navbar bg="light" expand="lg">
+                <Container>
+                    <NavLink to="/" className='navbar-brand'><ImTumblr2 className='logo' />Tuong NM</NavLink>
 
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <NavLink to="/" className='nav-link'>Home</NavLink>
-                        <NavLink to="/users" className='nav-link'>User</NavLink>
-                        <NavLink to="/admins" className='nav-link'>Admin</NavLink>
-                    </Nav>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            <NavLink to="/" className='nav-link'>{t('header.home')}</NavLink>
+                            <NavLink to="/users" className='nav-link'>{t('header.user')}</NavLink>
+                            <NavLink to="/admins" className='nav-link'>{t('header.admin')}</NavLink>
+                        </Nav>
 
-                    <Nav>
-                        {
-                            isAuthenticated === false ?
-                                <>
-                                    <button className='btn-login' onClick={() => handleLogin()}>Login</button>
-                                    <button className='btn-signup' onClick={() => handleRegister()}>Sign up</button>
-                                </>
-                                :
-                                <>
-                                    {/* <div className='account-image'>
-                                        <div>
-                                            <img src={`data:image/jpeg;base64,${account.image}`} />
-                                        </div>
-                                        <div className='accEmail'>{account.email}</div>
-                                    </div> */}
+                        <Nav>
+                            {
+                                isAuthenticated === false ?
+                                    <>
+                                        <button className='btn-login' onClick={() => handleLogin()}>{t('header.login')}</button>
+                                        <button className='btn-signup' onClick={() => handleRegister()}>{t('header.sign-up')}</button>
+                                    </>
+                                    :
+                                    <>
 
-                                    <div>
+                                        {
+                                            <div>
+                                                <NavDropdown className='dropdown-content'
+                                                    onMouseEnter={() => setIsShowHide(true)}
+                                                    onMouseLeave={() => setIsShowHide(false)}
+                                                    show={isShowHide}
+                                                    title={
+                                                        <>
+                                                            <div className='account-image'>
+                                                                <div>
+                                                                    <img src={`data:image/jpeg;base64,${account.image}`} />
+                                                                </div>
+                                                                <div className='accEmail'>{account.email}</div>
+                                                            </div>
+                                                        </>
+                                                    }
 
-                                        <NavDropdown className='setting' dropdown-toggle='false'
-                                            title={
-                                                <>
-                                                    <div className='account-image'>
-                                                        <div>
-                                                            <img src={`data:image/jpeg;base64,${account.image}`} />
-                                                        </div>
-                                                        <div className='accEmail'>{account.email}</div>
-                                                    </div>
-                                                </>
-                                            }
+                                                >
+                                                    <NavDropdown.Item onClick={() => handleProfile()}>{t('header.profile')}</NavDropdown.Item>
+                                                    <NavDropdown.Item onClick={() => handleLogout()}>{t('header.logout')}</NavDropdown.Item>
+                                                </NavDropdown>
+                                            </div>
+                                        }
 
-                                        >
-                                            <NavDropdown.Item>Profile</NavDropdown.Item>
-                                            <NavDropdown.Item onClick={() => handleLogout()}>Log out</NavDropdown.Item>
-                                        </NavDropdown>
-                                    </div>
-                                </>
+                                    </>
+                            }
+                            <Languages />
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar >
 
-                        }
-
-                        <Languages />
-
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
+            <ModalProfile
+                show={isShowModalProfile}
+                setShow={setIsShowModalProfile}
+            />
+        </>
     );
 }
 

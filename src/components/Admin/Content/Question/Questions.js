@@ -11,6 +11,7 @@ import {
     getAllQuizForAdmin, postCreateNewQuestionForQuiz, postCreateNewAnswerForQuestion
 } from "../../../../service/apiService";
 import { toast } from 'react-toastify';
+import { useTranslation, Trans } from 'react-i18next';
 
 const Questions = () => {
 
@@ -30,6 +31,7 @@ const Questions = () => {
         }
     ]
     const [question, setQuestion] = useState(initQuestion)
+    const { t } = useTranslation();
 
     const [isPreviewImage, setIsPreviewImage] = useState(false)
     const [dataImagePreview, setDataImagePreview] = useState({
@@ -226,14 +228,14 @@ const Questions = () => {
     return (
         <div className="questions-container">
             <div className="title">
-                Manage Questions
+                {t('sidebar.manage-question')}
             </div>
 
             <hr />
 
             <div className="add-new-question">
                 <div className="col-6 form-group">
-                    <label className="mb-2">Select Quiz</label>
+                    <label className="mb-2">{t('manage-quiz.select-quiz')}</label>
                     <Select
                         defaultValue={selectedQuiz}
                         onChange={setSelectedQuiz}
@@ -257,7 +259,7 @@ const Questions = () => {
                                             value={item.description}
                                             onChange={(event) => handleOnChange('QUESTION', item.id, event.target.value)}
                                         />
-                                        <label>Question {index + 1} Description</label>
+                                        <label>{t('detail-quiz.question')} {index + 1} {t('manage-quiz.description')}</label>
                                     </div>
 
                                     <div className="group-upload">
@@ -268,7 +270,7 @@ const Questions = () => {
                                             onChange={(event) => handleOnChangeFileAction(item.id, event)}
                                             hidden
                                         />
-                                        <span>{item.imageName ? <span onClick={() => handlePreviewImage(item.id)}>{item.imageName}</span> : '0 file is upload'}</span>
+                                        <span>{item.imageName ? <span onClick={() => handlePreviewImage(item.id)}>{item.imageName}</span> : t('manage-quiz.upload-img')}</span>
                                     </div>
 
                                     <div className="btn-add">
@@ -308,7 +310,7 @@ const Questions = () => {
                                                         placeholder="name@example.com"
                                                         onChange={(event) => handleAnswersQuestion('INPUT', answer.id, item.id, event.target.value)}
                                                     />
-                                                    <label >Answers {index + 1}</label>
+                                                    <label >{t('manage-quiz.answer')} {index + 1}</label>
                                                 </div>
 
                                                 <div className="btn-group">
@@ -337,7 +339,7 @@ const Questions = () => {
                     question && question.length > 0 &&
                     <div>
                         <button onClick={() => handleSubmitQuestionForQuiz()} className="btn btn-success">
-                            Save Question
+                            {t('setting.save')}
                         </button>
                     </div>
                 }

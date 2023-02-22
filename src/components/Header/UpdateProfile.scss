@@ -1,0 +1,43 @@
+.update-profile-container {
+
+    .img-profile {
+        display          : flex;
+        justify-content  : center;
+        flex-direction   : column;
+
+
+        .form-label {
+            margin-bottom     : 0.5rem;
+            padding           : 8px;
+            border-radius     : 5px;
+            margin-bottom     : 20px;
+            margin-left       : 333px;
+            border            : none;
+            background-color  : rgb(72 186 190);
+            cursor            : pointer;
+
+            &:hover {
+                opacity  : 0.8;
+            }
+        }
+
+        img {
+            height         : 160px;
+            width          : 160px;
+            margin-bottom  : 20px;
+            margin-left    : 40%;
+            border         : 3px solid rgb(177 190 230);
+            border-radius  : 50%;
+            object-fit     : cover;
+        }
+
+        .update {
+            display      : flex;
+            margin-left  : 335px;
+        }
+    }
+
+    button {
+        float  : right;
+    }
+}

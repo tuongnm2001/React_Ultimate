@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userActions';
 import { ImSpinner8 } from 'react-icons/im'
 import Languages from '../Header/Languages';
+import { useTranslation, Trans } from 'react-i18next';
 
 function Login(props) {
 
@@ -16,6 +17,7 @@ function Login(props) {
     const [password, setPassword] = useState('')
     const [showHidePassword, setShowHidePassword] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+    const { t } = useTranslation();
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -35,15 +37,18 @@ function Login(props) {
         let data = await postLogin(email, password)
         if (data && data.EC === 0) {
             dispatch(doLogin(data))
-            toast.success('Đăng nhập thành công.')
+            toast.success(t('login.login-sucess'))
             setIsLoading(false)
             navigate('/')
         }
 
         if (data && data.EC !== 0) {
-            toast.error(data.EM)
+            toast.error(t('login.login-fail'))
             setIsLoading(false)
         }
+
+        console.log(data);
+
     }
 
     const onKeyUpValue = (e) => {
@@ -59,19 +64,19 @@ function Login(props) {
     return (
         <div className="login-container">
             <div className='header'>
-                <span className='title-header'>Don't you have an account yet?</span>
-                <button className='btn-sign-up' onClick={() => handleRegister()}>Sign up</button>
-                <span className='need-help'>Need help?</span>
+                <span className='title-header'>{t('login.no-account')}</span>
+                <button className='btn-sign-up' onClick={() => handleRegister()}>{t('login.sign-up')}</button>
+                <span className='need-help'>{t('login.need-help')}</span>
                 <div className='language'><Languages /></div>
             </div>
-            <span className='back-home' onClick={() => handleBackHome()}> <BsFillArrowLeftCircleFill /> Home </span>
+            <span className='back-home' onClick={() => handleBackHome()}> <BsFillArrowLeftCircleFill /> {t('login.home')} </span>
 
             <div className='title col-4 mx-auto'>
                 Tuong NM
             </div>
 
             <div className='welcome col-4 mx-auto'>
-                Hello , who's this?
+                {t('login.hello')}
             </div>
 
             <div className='content-form col-4 mx-auto'>
@@ -83,7 +88,7 @@ function Login(props) {
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                     />
-                    <label>Password</label>
+                    <label>{t('login.password')}</label>
                     <input
                         type={showHidePassword ? 'text' : 'password'}
                         className='form-control'
@@ -91,10 +96,10 @@ function Login(props) {
                         onChange={(event) => setPassword(event.target.value)}
                         onKeyUp={onKeyUpValue.bind(this)}
                     />
-                    <span className='forgot-password'>Forgot password ?</span>
+                    <span className='forgot-password'>{t('login.forgot-password')}</span>
                     <div>
                         <button disabled={isLoading} onClick={() => handleLogin()} className='btn-submit'>
-                            Login &ensp;{isLoading === true && <ImSpinner8 className="loader-icon" />}
+                            {t('login.login')} &ensp;{isLoading === true && <ImSpinner8 className="loader-icon" />}
                         </button>
                     </div>
                 </div>

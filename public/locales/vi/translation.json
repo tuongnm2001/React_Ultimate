@@ -1,9 +1,116 @@
 {
     "homepage": {
         "title1": "Có rất nhiều cách để hỏi",
-        "title2": " 1You don't want to make a boring form. And your audience won't answer one.",
+        "title2": "Hãy tham gia một bài trắc nghiệm để đánh giá khả năng của bạn.",
         "title3": {
-            "login": "1Get's started. It's free"
+            "login": "Bắt đầu ngay"
         }
+    },
+    "header": {
+        "home": "Trang chủ",
+        "user": "Người dùng",
+        "admin": "Quản trị",
+        "login": "Đăng nhập",
+        "sign-up": "Đăng ký",
+        "logout": "Đăng xuất",
+        "profile": "Tài khoản của tôi"
+    },
+    "list-quiz": {
+        "button": "Bắt đầu ngay",
+        "quiz": "Bài"
+    },
+    "detail-quiz": {
+        "choose-answer": "Chọn một đáp án",
+        "question": "Câu",
+        "prev": "Trước",
+        "next": "Tiếp",
+        "finish": "Hoàn thành",
+        "your-result": "KẾT QUẢ CỦA BẠN",
+        "total-q": "Tổng câu hỏi",
+        "correct-answer": "Đáp án đúng",
+        "close": "Đóng",
+        "show-answer": "Hiển thị kết quả"
+    },
+    "login": {
+        "home": "Trang chủ",
+        "no-account": "Bạn chưa có tài khoản?",
+        "sign-up": "Đăng ký",
+        "need-help": "Cần giúp đỡ",
+        "hello": "Hello , chào bạn?",
+        "password": "Mật khẩu",
+        "forgot-password": "Quên mật khẩu ?",
+        "login": "Đăng nhập",
+        "login-sucess": "Đăng nhập thành công",
+        "login-fail": "Đăng nhập thất bại",
+        "title": "Đã có tài khoản?"
+    },
+    "register": {
+        "register": "ĐĂNG KÝ",
+        "hello": "Hello , chào bạn?",
+        "password": "Mật khẩu",
+        "username": "Tên tài khoản",
+        "register1": "Đăng ký"
+    },
+    "admin": {
+        "logout": "Đăng xuất",
+        "profile": "Tài khoản của tôi"
+    },
+    "dashboard": {
+        "title": "Bảng thống kê",
+        "tuser": "Tổng người dùng",
+        "tquiz": "Tổng bài kiểm tra",
+        "tquestion": "Tổng câu hỏi",
+        "tanswers": "Tổng câu trả lời"
+    },
+    "sidebar": {
+        "Dashboard": "Thống kê",
+        "manage": "Quản lí",
+        "manage-users": "Quản lý người dùng",
+        "manage-quiz": "Quản lý bài kiểm tra",
+        "manage-question": "Quản lý câu hỏi"
+    },
+    "manage-user": {
+        "manage-user": "QUẢN LÝ NGƯỜI DÙNG",
+        "adduser": "Thêm mới người dùng",
+        "username": "Tên tài khoản",
+        "role": "Vai trò",
+        "handle": "Cài đặt",
+        "view": "Xem chi tiết",
+        "update": "Cập nhật",
+        "delete": "Xóa",
+        "title": "THÊM MỚI NGƯỜI DÙNG",
+        "upload-image": "Tải ảnh lên",
+        "title-update": "CẬP NHẬT NGƯỜI DÙNG",
+        "title-delete": "XÓA NGƯỜI DÙNG",
+        "delete-user": "Bạn có muốn xóa"
+    },
+    "setting": {
+        "password": "Mật khẩu",
+        "username": "Tên tài khoản",
+        "role": "Vai trò",
+        "close": "Đóng",
+        "save": "Lưu",
+        "update": "Cập nhật",
+        "delete": "Xóa"
+    },
+    "manage-quiz": {
+        "manage-quiz": "Quản lý bài kiểm tra",
+        "add-new-quiz": "Thêm bài kiểm tra",
+        "name": "Tên",
+        "description": "Miêu tả",
+        "quiz-type": "Độ khó",
+        "easy": "DỄ",
+        "medium": "VỪA",
+        "hard": "KHÓ",
+        "list-quiz": "Danh sách bài kiểm tra",
+        "update-quiz": "CẬP NHẬT BÀI KIỂM TRA",
+        "delete-quiz": "XÓA BÀI KIỂM TRA",
+        "update-question": "Cập nhật câu hỏi",
+        "assign-user": "Chỉ định người dùng",
+        "select-quiz": "Chọn bài kiểm tra",
+        "add-question": "Thêm câu hỏi",
+        "answer": "Câu trả lời",
+        "upload-img": "0 file tải lên",
+        "select-user": "Chọn Email"
     }
 }

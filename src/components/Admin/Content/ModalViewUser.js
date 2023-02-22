@@ -3,10 +3,12 @@ import { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import _ from 'lodash';
+import { useTranslation, Trans } from 'react-i18next';
 
 const ModalViewUser = (props) => {
 
     const { show, setShow, dataView } = props;
+    const { t } = useTranslation();
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -49,7 +51,7 @@ const ModalViewUser = (props) => {
                 className='modal-add-user'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>VIEW</Modal.Title>
+                    <Modal.Title>{t('manage-user.view')}</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -66,7 +68,7 @@ const ModalViewUser = (props) => {
 
 
                         <div className="col-md-6">
-                            <label className="form-label">Password</label>
+                            <label className="form-label">{t('setting.password')}</label>
                             <input
                                 value={password}
                                 type="password"
@@ -76,7 +78,7 @@ const ModalViewUser = (props) => {
                         </div>
 
                         <div className="col-md-6">
-                            <label className="form-label">Username</label>
+                            <label className="form-label">{t('setting.username')}</label>
                             <input
                                 value={username}
                                 type="text"
@@ -86,7 +88,7 @@ const ModalViewUser = (props) => {
                         </div>
 
                         <div className="col-md-4">
-                            <label className="form-label">Role</label>
+                            <label className="form-label">{t('setting.role')}</label>
                             <select disabled className="form-select" value={role}>
                                 <option value='USER'>USER</option>
                                 <option value='ADMIN'>ADMIN</option>
@@ -108,7 +110,7 @@ const ModalViewUser = (props) => {
 
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('setting.close')}
                     </Button>
                 </Modal.Footer>
             </Modal>

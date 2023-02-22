@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { putUpdateQuiz } from '../../../../service/apiService';
 import _ from 'lodash'
 import { toast } from 'react-toastify';
+import { useTranslation, Trans } from 'react-i18next';
 
 const ModalUpdateQuiz = (props) => {
 
@@ -12,6 +13,7 @@ const ModalUpdateQuiz = (props) => {
     const [type, setType] = useState('EASY')
     const [image, setImage] = useState('')
     const [previewImage, setPreviewImage] = useState('')
+    const { t } = useTranslation();
 
     const { isShowModalUpdate, setIsShowModalUpdate, dataUpdate } = props
 
@@ -63,13 +65,13 @@ const ModalUpdateQuiz = (props) => {
                 className='modal-add-user'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>UPDATE NEW QUIZ</Modal.Title>
+                    <Modal.Title>{t('manage-quiz.update-quiz')}</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
                     <form className="row g-3">
                         <div className="col-md-6">
-                            <label className="form-label">Name</label>
+                            <label className="form-label">{t('manage-quiz.name')}</label>
                             <input
                                 className="form-control"
                                 value={name}
@@ -79,7 +81,7 @@ const ModalUpdateQuiz = (props) => {
 
 
                         <div className="col-md-6">
-                            <label className="form-label">Description</label>
+                            <label className="form-label">{t('manage-quiz.description')}</label>
                             <input
                                 className="form-control"
                                 value={description}
@@ -88,17 +90,17 @@ const ModalUpdateQuiz = (props) => {
                         </div>
 
                         <div className="col-md-4">
-                            <label className="form-label">Type</label>
+                            <label className="form-label">{t('manage-quiz.quiz-type')}</label>
                             <select className="form-select" value={type} onChange={(event) => setType(event.target.value)}>
-                                <option value='EASY'>EASY</option>
-                                <option value='MEDIUM'>MEDIUM</option>
-                                <option value='HARD'>HARD</option>
+                                <option value='EASY'>{t('manage-quiz.easy')}</option>
+                                <option value='MEDIUM'>{t('manage-quiz.medium')}</option>
+                                <option value='HARD'>{t('manage-quiz.hard')}</option>
                             </select>
                         </div>
 
                         <div className='col-md-12'>
                             <label className="form-label label-upload" htmlFor='lableUpload'>
-                                Upload File Image
+                                {t('manage-user.upload-image')}
                             </label>
                             <input
                                 hidden
@@ -121,10 +123,10 @@ const ModalUpdateQuiz = (props) => {
 
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('setting.close')}
                     </Button>
                     <Button className='btn btn-warning' variant="primary" onClick={() => handleSubmitUpdateQuiz()}>
-                        Update
+                        {t('setting.save')}
                     </Button>
                 </Modal.Footer>
             </Modal>
