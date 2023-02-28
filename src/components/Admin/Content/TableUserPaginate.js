@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useTranslation, Trans } from 'react-i18next';
+import _ from 'lodash'
 
 const TableUserPaginate = (props) => {
     const { listUser, pageCount } = props
     const { t } = useTranslation();
+    const [sortId, setSortId] = useState('')
 
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {

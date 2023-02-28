@@ -3,4 +3,9 @@
     gap        : 30px;
     flex-wrap  : wrap;
     padding    : 40px 0;
+
+    img {
+        height      : 100%;
+        object-fit  : contain;
+    }
 }

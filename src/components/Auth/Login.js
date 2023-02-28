@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.scss'
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
@@ -18,6 +18,7 @@ function Login(props) {
     const [showHidePassword, setShowHidePassword] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const { t } = useTranslation();
+    const passwordRef = useRef();
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -87,12 +88,18 @@ function Login(props) {
                         className='form-control'
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
+                        onKeyUp={event => {
+                            if (event.key === 'Enter') {
+                                passwordRef.current.focus();
+                            }
+                        }}
                     />
                     <label>{t('login.password')}</label>
                     <input
                         type={showHidePassword ? 'text' : 'password'}
                         className='form-control'
                         value={password}
+                        ref={passwordRef}
                         onChange={(event) => setPassword(event.target.value)}
                         onKeyUp={onKeyUpValue.bind(this)}
                     />

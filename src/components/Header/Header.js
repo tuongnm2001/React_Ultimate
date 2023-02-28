@@ -61,7 +61,16 @@ const Header = () => {
                         <Nav className="me-auto">
                             <NavLink to="/" className='nav-link'>{t('header.home')}</NavLink>
                             <NavLink to="/users" className='nav-link'>{t('header.user')}</NavLink>
-                            <NavLink to="/admins" className='nav-link'>{t('header.admin')}</NavLink>
+                            {
+                                account && account.role && account.role === 'ADMIN'
+                                    ?
+                                    <NavLink to="/admins" className='nav-link'>{t('header.admin')}</NavLink>
+                                    :
+                                    ""
+                            }
+
+
+
                         </Nav>
 
                         <Nav>

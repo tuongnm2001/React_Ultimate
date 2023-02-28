@@ -7,7 +7,7 @@ const Question = (props) => {
 
     const { data, index } = props;
     const { t } = useTranslation();
-    const [isPreviewImage, setIsPreviewImage] = useState(false)
+    const [image, setImage] = useState(false)
 
     if (_.isEmpty(data)) {
         return (<></>)
@@ -25,14 +25,14 @@ const Question = (props) => {
                         <img
                             style={{ cursor: 'pointer' }}
                             src={`data:image/jpeg;base64,${data.image}`}
-                            onClick={() => setIsPreviewImage(true)}
+                            onClick={() => setImage(true)}
                         />
                         {
-                            isPreviewImage === true &&
+                            image === true &&
                             <Lightbox
                                 image={`data:image/jpeg;base64,${data.image}`}
                                 title={'Question Image'}
-                                onClose={() => setIsPreviewImage(false)}
+                                onClose={() => setImage(false)}
 
                             />
                         }

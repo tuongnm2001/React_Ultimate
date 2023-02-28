@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import './Register.scss'
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useTranslation, Trans } from 'react-i18next';
+import { useRef } from 'react';
 
 function Register(props) {
 
@@ -14,6 +15,8 @@ function Register(props) {
     const [username, setUsername] = useState('')
     const [showHidePassword, setShowHidePassword] = useState(false)
     const { t } = useTranslation();
+    const passRef = useRef();
+    const userNameRef = useRef();
 
     const navigate = useNavigate();
 
@@ -87,6 +90,11 @@ function Register(props) {
                         className='form-control'
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
+                        onKeyUp={event => {
+                            if (event.key === 'Enter') {
+                                passRef.current.focus();
+                            }
+                        }}
                     />
                     <label>{t('register.password')} (*)</label>
                     <input
@@ -94,6 +102,12 @@ function Register(props) {
                         className='form-control'
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
+                        ref={passRef}
+                        onKeyUp={event => {
+                            if (event.key === 'Enter') {
+                                userNameRef.current.focus();
+                            }
+                        }}
                     />
 
                     <label>{t('register.username')}</label>
@@ -101,6 +115,12 @@ function Register(props) {
                         value={username}
                         className='form-control'
                         onChange={(event) => setUsername(event.target.value)}
+                        ref={userNameRef}
+                        onKeyUp={event => {
+                            if (event.key === 'Enter') {
+                                handleRegister();
+                            }
+                        }}
                     />
                     <div>
                         <button onClick={() => handleRegister()} className='btn-submit'>{t('register.register1')}</button>

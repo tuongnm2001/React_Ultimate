@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import UpdateProfile from './UpdateProfile';
 import ChangePassword from './ChangePassword';
 import History from './History';
+import { useTranslation, Trans } from 'react-i18next';
 
 const ModalProfile = (props) => {
     let { show, setShow } = props
@@ -14,6 +15,7 @@ const ModalProfile = (props) => {
     const [key, setKey] = useState('home');
     const account = useSelector(state => state.user.account);
     const [showModal, setShowModal] = useState(false)
+    const { t } = useTranslation();
 
     const handleClose = () => {
         setShow(false)
@@ -28,7 +30,7 @@ const ModalProfile = (props) => {
 
         >
             <Modal.Header closeButton>
-                <Modal.Title>Hồ sơ của tôi</Modal.Title>
+                <Modal.Title>{t('profile.my-profile')}</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
@@ -38,18 +40,18 @@ const ModalProfile = (props) => {
                     onSelect={(k) => setKey(k)}
                     className="mb-3"
                 >
-                    <Tab eventKey="home" title="Hồ sơ của tôi">
+                    <Tab eventKey="home" title={t('profile.my-profile')}>
                         <UpdateProfile
                             account={account}
                             handleClose={handleClose}
                         />
                     </Tab>
-                    <Tab eventKey="profile" title="Đổi mật khẩu">
+                    <Tab eventKey="profile" title={t('profile.changePassword')}>
                         <ChangePassword
                             handleClose={handleClose}
                         />
                     </Tab>
-                    <Tab eventKey="contact" title="Lịch sử bài kiểm tra">
+                    <Tab eventKey="contact" title={t('profile.history')}>
                         <History
                             handleClose={handleClose}
                         />

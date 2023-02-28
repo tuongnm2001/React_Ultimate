@@ -8,7 +8,7 @@
     },
     "header": {
         "home": "Home",
-        "user": "User",
+        "user": "Exam",
         "admin": "Admin",
         "login": "Login",
         "sign-up": "Sign up",
@@ -112,5 +112,17 @@
         "answer": "Answer",
         "upload-img": "0 file is upload",
         "select-user": "Select User"
+    },
+    "profile": {
+        "my-profile": "My Profile",
+        "changePassword": "Change Password",
+        "history": "History",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "quiz-name": "Quiz Name",
+        "ttquestion": "Total Question",
+        "ttcorrect": "Total Correct",
+        "date": "Date",
+        "noExam": "You don't have any quiz now"
     }
 }

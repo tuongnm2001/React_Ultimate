@@ -4,12 +4,13 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import moment from 'moment'
 import Table from 'react-bootstrap/Table';
-
+import { useTranslation } from 'react-i18next';
+import _ from 'lodash'
 
 const History = (props) => {
 
     const [dataHistory, setDataHistory] = useState({})
-
+    const { t } = useTranslation();
 
     useEffect(() => {
         fetchDataHistory()
@@ -34,7 +35,8 @@ const History = (props) => {
         }
     }
 
-    console.log('cek : ', dataHistory);
+    let sortDataHistory = _.orderBy(dataHistory, ['id'], ['desc'])
+
 
     return (
         <div className="history-container">
@@ -42,31 +44,31 @@ const History = (props) => {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Quiz Name</th>
-                        <th>Total Question</th>
-                        <th>total_correct</th>
-                        <th>Date</th>
+                        <th>{t('profile.quiz-name')}</th>
+                        <th>{t('profile.ttquestion')}</th>
+                        <th>{t('profile.ttcorrect')}</th>
+                        <th>{t('profile.date')}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        dataHistory && dataHistory.length > 0 &&
-                        dataHistory.map((item, index) => {
-                            return (
-                                <tr key={`key-${index}`}>
-                                    <td>{item.id}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.total_questions}</td>
-                                    <td>{item.total_correct}</td>
-                                    <td>{item.date}</td>
-                                </tr>
-                            )
-                        })
+                        sortDataHistory && sortDataHistory.length > 0 ?
+                            sortDataHistory.map((item, index) => {
+                                return (
+                                    <tr key={`key-${index}`}>
+                                        <td>{item.id}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.total_questions}</td>
+                                        <td>{item.total_correct}</td>
+                                        <td>{item.date}</td>
+                                    </tr>
+                                )
+                            }) :
+                            <td className='noExam' colSpan='5'>{t('profile.noExam')}</td>
                     }
                 </tbody>
-
-                <button className='btn btn-warning mt-3' onClick={() => props.handleClose()}>Cancal</button>
             </Table>
+            <button className='btn btn-danger' onClick={() => props.handleClose()}>{t('setting.close')}</button>
         </div>
     )
 }

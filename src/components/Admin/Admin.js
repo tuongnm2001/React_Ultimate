@@ -12,6 +12,7 @@ import { logOut } from '../../service/apiService';
 import { toast } from 'react-toastify';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
+import ModalProfile from "../Header/ModalProfile";
 
 const Admin = (props) => {
 
@@ -22,6 +23,7 @@ const Admin = (props) => {
     const [collapsed, setCollapsed] = useState(false)
     const { t } = useTranslation();
     const [isShowHide, setIsShowHide] = useState(false)
+    const [isShowModalProfile, setIsShowModalProfile] = useState(false)
 
     const handleLogout = async () => {
         let res = await logOut(account.email, account.refresh_token)
@@ -34,52 +36,63 @@ const Admin = (props) => {
         }
     }
 
+    const handleChangeProfile = () => {
+        setIsShowModalProfile(true)
+    }
+
     return (
-        <div className="admin-container">
-            <div className="admin-sidebar">
-                <SideBar
-                    collapsed={collapsed}
-                />
-            </div>
+        <>
+            <div className="admin-container">
+                <div className="admin-sidebar">
+                    <SideBar
+                        collapsed={collapsed}
+                    />
+                </div>
 
-            <div className="admin-content">
-                <div className='admin-header'>
-                    <span onClick={() => setCollapsed(!collapsed)} >
-                        <FaBars className="left-side" />
-                    </span>
+                <div className="admin-content">
+                    <div className='admin-header'>
+                        <span onClick={() => setCollapsed(!collapsed)} >
+                            <FaBars className="left-side" />
+                        </span>
 
-                    <div className="right-side">
-                        <NavDropdown
-                            className='setting'
-                            dropdown-toggle='false'
-                            onMouseEnter={() => setIsShowHide(true)}
-                            onMouseLeave={() => setIsShowHide(false)}
-                            show={isShowHide}
-                            title={
-                                <>
-                                    <div className='account-image'>
-                                        <div>
-                                            <img src={`data:image/jpeg;base64,${account.image}`} />
+                        <div className="right-side">
+                            <NavDropdown
+                                className='setting'
+                                dropdown-toggle='false'
+                                onMouseEnter={() => setIsShowHide(true)}
+                                onMouseLeave={() => setIsShowHide(false)}
+                                show={isShowHide}
+                                title={
+                                    <>
+                                        <div className='account-image'>
+                                            <div>
+                                                <img src={`data:image/jpeg;base64,${account.image}`} />
+                                            </div>
+                                            <div className='accEmail'>{account.email}</div>
                                         </div>
-                                        <div className='accEmail'>{account.email}</div>
-                                    </div>
-                                </>
-                            }>
-                            <NavDropdown.Item>{t('admin.profile')}</NavDropdown.Item>
-                            <NavDropdown.Item onClick={() => handleLogout()}>{t('admin.logout')}</NavDropdown.Item>
-                        </NavDropdown>
+                                    </>
+                                }>
+                                <NavDropdown.Item onClick={() => handleChangeProfile()}>{t('admin.profile')}</NavDropdown.Item>
+                                <NavDropdown.Item onClick={() => handleLogout()}>{t('admin.logout')}</NavDropdown.Item>
+                            </NavDropdown>
 
-                        <Languages />
+                            <Languages />
+                        </div>
+                    </div>
+
+                    <div className='admin-main'>
+                        <PerfectScrollbar>
+                            <Outlet />
+                        </PerfectScrollbar>
                     </div>
                 </div>
-
-                <div className='admin-main'>
-                    <PerfectScrollbar>
-                        <Outlet />
-                    </PerfectScrollbar>
-                </div>
             </div>
-        </div>
+
+            <ModalProfile
+                show={isShowModalProfile}
+                setShow={setIsShowModalProfile}
+            />
+        </>
     )
 }
 export default Admin;

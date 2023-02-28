@@ -46,7 +46,7 @@ const ListQuiz = (props) => {
 
             {
                 arrQuiz && arrQuiz.length === 0 &&
-                <div>You don't have any quiz now...</div>
+                <div>{t('profile.noExam')}</div>
             }
         </div>
     )
