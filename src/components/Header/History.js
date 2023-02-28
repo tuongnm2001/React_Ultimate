@@ -20,12 +20,15 @@ const History = (props) => {
         let res = await getHistory();
         if (res && res.EC === 0) {
             let newData = res.DT.data.map(item => {
+                const format1 = "DD-MM-YYYY HH:mm:ss"
+                var date1 = new Date(item.createdAt);
                 return {
                     total_correct: item.total_correct,
                     total_questions: item.total_questions,
                     name: item.quizHistory.name,
                     id: item.id,
-                    date: moment(item.createdAt).utc().format('DD/MM/YYYY hh:mm:ss A')
+                    // date: moment(item.createdAt).utc().format('YYYY-MM-DD HH:mm:ss')
+                    date: moment(date1).format(format1)
                 }
             })
             if (newData.length > 8) {
