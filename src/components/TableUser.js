@@ -1,35 +1,43 @@
 import Table from 'react-bootstrap/Table';
+import './TableUser.scss'
 
-const TableUser = () => {
+const TableUser = (props) => {
+
+    const { dataUser } = props
+
+
+
     return (
-        <div>
-            <Table striped bordered hover variant="dark">
+        <div className='table-container'>
+
+            <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>ID</th>
                         <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td colSpan={2}>Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    {
+                        dataUser && dataUser.length > 0 &&
+                        dataUser.map((item, index) => {
+                            return (
+                                <tr key={`user-${index}`}>
+                                    <td>{item.id}</td>
+                                    <td>{item.username}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.role}</td>
+                                    <td>
+                                        <button className='btn btn-warning m-3' onClick={() => props.handleUpdateUser(item)}>Update</button>
+                                        <button className='btn btn-danger' onClick={() => props.handleDeleteUser(item)}>Delete</button>
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    }
                 </tbody>
             </Table>
         </div>
