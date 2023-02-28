@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { deleteUser } from '../service/apiService';
 
-const ModalDelete = (props) => {
+const ModalDelete1 = (props) => {
 
     const { showModalDelete, setShowModalDelete, dataDeleteUser, fetAllUser } = props
 
@@ -43,4 +43,4 @@ const ModalDelete = (props) => {
     )
 }
 
-export default ModalDelete
+export default ModalDelete1

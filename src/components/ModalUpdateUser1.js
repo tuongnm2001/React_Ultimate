@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import './ModalAddUser.scss'
+import './ModalAddUser1.scss'
 import img1 from '../assets/image1.jpg'
 import { putUpdateUser } from '../service/apiService';
 import { async } from 'q';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 
-const ModalUpdateUser = (props) => {
+const ModalUpdateUser1 = (props) => {
 
     const { showModalUpdate, setShowModalUpdate, dataUpdateUser, fetAllUser } = props
 
@@ -138,4 +138,4 @@ const ModalUpdateUser = (props) => {
     )
 }
 
-export default ModalUpdateUser;
+export default ModalUpdateUser1;

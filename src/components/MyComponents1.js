@@ -1,13 +1,13 @@
 import { async } from "q";
 import React, { useState } from "react";
-import ModalAddUser from "./ModalAddUser";
+import ModalAddUser from "./ModalAddUser1";
 import TableUser from "./TableUser";
 import { fetchAllUser, deleteUser } from "../service/apiService";
 import { useEffect } from "react";
-import ModalDelete from "./ModalDelete";
-import ModalUpdateUser from "./ModalUpdateUser";
+import ModalDelete from "./ModalDelete1";
+import ModalUpdateUser from "./ModalUpdateUser1";
 
-const MyComponents = () => {
+const MyComponents1 = () => {
 
     const [showModalUser, setShowModalUser] = useState(false)
     const [showModalDelete, setShowModalDelete] = useState(false)
@@ -73,4 +73,4 @@ const MyComponents = () => {
         </div>
     )
 }
-export default MyComponents;
+export default MyComponents1;
